@@ -9,9 +9,6 @@ body {
     background-color: #c0c0c0;
 }
 
-/* Estilizando a navbar do Bootstrap com maior especificidade */
-
-
 nav.navbar .navbar-nav {
     gap: 20px;
 }
@@ -29,4 +26,26 @@ nav.navbar .navbar-nav {
 
 .btn.btn-outline-success {
     align-items: center;
+}
+
+.form-control {
+    width: 300px;
+    background-color:  #e7e7e7;
+    border-color: black;
+    border-width: 2px;
+}
+
+.Caixa-de-login {
+    display: grid;
+    place-items: center;
+    gap: 10px;
+    margin-top: 50px;
+}
+
+.btn-login {
+    border-radius: 10px;
+    background-color: #C48781;
+    height: 40px;
+    width: 100px;
+    font-family: "bebas neue";
 }
