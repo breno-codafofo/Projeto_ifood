@@ -1,7 +1,9 @@
 // importando dependências
+import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
-import 'dotenv/config'
+import { router } from './routes/routes'
+
 
 // instanciando express
 const app = express()
@@ -11,11 +13,7 @@ app.use(express.json())
 app.use(cors({
     origin: 'http://localhost:5000'
 }))
-
-// rotas
-//
-//
-//
+app.use(router)
 
 // variável de ambiente para a porta
 const PORT = process.env.PORT || 3000
