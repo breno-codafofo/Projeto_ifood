@@ -6,7 +6,6 @@ form.addEventListener('submit', async (event) => {
     const formData = new FormData(form)
     const dados = Object.fromEntries(formData)
 
-    console.log('📤 Enviando dados:', dados)
 
     try {
         const resposta = await fetch('http://localhost:3000/register', {
@@ -17,11 +16,7 @@ form.addEventListener('submit', async (event) => {
             body: JSON.stringify(dados)
         })
 
-        console.log('📥 Status da resposta:', resposta.status)
-        console.log('📥 Headers:', resposta.headers)
-
         const resultado = await resposta.json()
-        console.log('📥 Dados recebidos:', resultado)
 
         if (resposta.ok) {
             alert(`Sucesso! Usuário cadastrado!`)
@@ -31,8 +26,6 @@ form.addEventListener('submit', async (event) => {
 
     }   
     catch (erro) {
-        console.error('❌ Falha na requisição:', erro)
-        console.error('Stack:', erro.stack)
         alert('Houve um erro ao conectar com o servidor :(\n' + erro.message)
     }
 })
