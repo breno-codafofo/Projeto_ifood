@@ -7,7 +7,8 @@
     <title>BELU | Cadastro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-
+    <!-- Link do ícone da página -->
+    <link rel="shortcut icon" href="images/logo_min_alt.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
@@ -63,20 +64,21 @@
     </section>
 
     <section id="Body">
-        <div class="Caixa-de-login">
+        <form id="Caixa-de-login">
             <h1> Criar Conta </h1>
 
-            <label for="nome">Nome completo: </label>
-            <input type="text" id="nome" placeholder="Seu nome: " class="form-control mb-3" />
+            <label for="name">Nome completo: </label>
+            <input type="text" id="name" name="name" placeholder="Seu nome: " class="form-control mb-3" />
 
             <label for="email">E-mail: </label>
-            <input type="email" id="email" placeholder="Email: " class="form-control mb-3" />
+            <input type="email" id="email" name="email" placeholder="Email: " class="form-control mb-3" />
 
-            <label for="senha">Crie uma senha: </label>
-            <input type="password" id="senha" placeholder="Senha: " class="form-control mb-3" />
+            <label for="password">Crie uma senha: </label>
+            <input type="password" id="password" name="password" placeholder="Senha: " class="form-control mb-3" />
 
-            <label for="confirma-senha">Confirme sua senha: </label>
-            <input type="password" id="confirma-senha" placeholder="Repita a senha: " class="form-control mb-3" />
+            <label for="confirmationPassword">Confirme sua senha: </label>
+            <input type="password" id="confirmationPassword" name="confirmationPassword" placeholder="Repita a senha: "
+                class="form-control mb-3" />
 
             <button class="btn-login w-100">Finalizar Cadastro</button>
 
@@ -84,7 +86,7 @@
                 Já tem uma conta? <a href="Login.html"
                     style="color: #C48781; text-decoration: none; font-weight: bold;">Faça Login</a>
             </p>
-        </div>
+        </form>
     </section>
 
     <footer>
@@ -96,6 +98,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
         integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
         crossorigin="anonymous"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

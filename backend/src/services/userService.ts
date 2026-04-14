@@ -4,7 +4,6 @@ import bcrypt from 'bcrypt'
 
 export class UserService {
     async create(dados: createUserInput) {
-        console.log('📋 Iniciando criação de usuário com:', { name: dados.name, email: dados.email })
 
         // verificar se o usuário já existe
         const userExists = await prisma.user.findUnique({
@@ -17,7 +16,6 @@ export class UserService {
 
         // criptografar a senha
         const passwordHash = await bcrypt.hash(dados.password, 10)
-        console.log('🔐 Senha criptografada')
 
         // salvar no banco e remover a confirmação de senha
         const newUser = await prisma.user.create({
@@ -33,7 +31,6 @@ export class UserService {
                 password: true,
             }
         })
-        console.log('💾 Usuário salvo no banco:', newUser.id)
         return newUser;
     }
 }
