@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { registerSchema } from '../schemas/userSchema'
+import { registerSchema, loginSchema } from '../schemas/userSchema'
 import { UserService } from '../services/userService'
 import { ZodError } from 'zod'
 
@@ -26,6 +26,30 @@ export class UserController {
                 });
             }
             return res.status(400).json({
+                message: error.message || "Erro interno"
+            });
+        }
+    }
+
+    async login(req: Request, res: Response) {
+        try {
+            const validatedData = loginSchema.parse(req.body)
+
+            const result = await userService.login(validatedData)
+
+            return res.status(200).json(result)
+        }
+        catch (error: any) {
+            if (error instanceof ZodError) {
+                return res.status(400).json({
+                    status: "erro_validacao",
+                    errors: error.issues.map(err => ({
+                        campo: err.path[0],
+                        mensagem: err.message
+                    }))
+                });
+            }
+            return res.status(401).json({
                 message: error.message || "Erro interno"
             });
         }

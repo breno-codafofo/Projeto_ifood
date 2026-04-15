@@ -1,6 +1,9 @@
 import { prisma } from '../config/database'
-import { createUserInput } from '../schemas/userSchema'
+import { createUserInput, loginInput } from '../schemas/userSchema'
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+
+const JWT_SECRET = process.env.JWT_SECRET || 'sua-chave-secreta-super-segura'
 
 export class UserService {
     async create(dados: createUserInput) {
@@ -32,5 +35,39 @@ export class UserService {
             }
         })
         return newUser;
+    }
+
+    async login(dados: loginInput) {
+        // verificar se o usuário existe
+        const user = await prisma.user.findUnique({
+            where: { email: dados.email }
+        })
+
+        if (!user) {
+            throw new Error('Email ou senha incorretos')
+        }
+
+        // verificar se a senha está correta
+        const senhaValida = await bcrypt.compare(dados.password, user.password)
+
+        if (!senhaValida) {
+            throw new Error('Email ou senha incorretos')
+        }
+
+        // gerar token JWT
+        const token = jwt.sign(
+            { id: user.id, email: user.email },
+            JWT_SECRET,
+            { expiresIn: '7d' }
+        )
+
+        return {
+            token,
+            user: {
+                id: user.id,
+                name: user.name,
+                email: user.email
+            }
+        }
     }
 }
